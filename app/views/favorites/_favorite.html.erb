@@ -1,9 +1,9 @@
 <% if book.favorited_by?(current_user) %>
     <%= link_to book_favorite_path(book), method: :delete do %>
-        <span class="text-danger">♥<%= book.favorites.count %></span>
+    <span class="text-danger">♥<%= book.favorites.count %></span>
     <% end %>
 <% else %>
     <%= link_to book_favorite_path(book), method: :post do %>
-        <span class="text-primary">♥<%= book.favorites.count %></span>
+    <span class="text-primary">♥<%= book.favorites.count %></span>
     <% end %>
 <% end %>

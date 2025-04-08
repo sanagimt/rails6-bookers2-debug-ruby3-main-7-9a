@@ -2,8 +2,13 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def show
+    to  = Time.current.at_end_of_day
+    from  = (to - 6.day).at_beginning_of_day
     @user = User.find(params[:id])
-    @books = @user.books
+    @books = @user.books.sort{|a,b|
+    b.favorites.where(created_at: from...to).size <=>
+    a.favorites.where(created_at: from...to).size
+  }
     @book = Book.new
   end
 
